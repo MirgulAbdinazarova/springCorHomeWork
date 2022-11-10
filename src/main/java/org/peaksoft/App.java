@@ -12,7 +12,8 @@ public class App
 
         Person person = context.getBean("person",Person.class);
         System.out.println(person);
-        person.aboutAnimal();
+        person.aboutAnimal1();
+        person.aboutAnimal2();
 
         context.close();
     }

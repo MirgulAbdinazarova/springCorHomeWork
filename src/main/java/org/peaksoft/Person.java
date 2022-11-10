@@ -12,29 +12,37 @@ import org.springframework.stereotype.Component;
 public class Person {
     @Value("${person.name}")
     private String name;
+    @Value("${person.name2}")
+    private String name2;
     @Value("${person.age}")
     private Integer age;
+
+    private Animal animal1;
+    private Animal animal2;
+
     @Autowired
-    @Qualifier("dog")
-    private Animal animal;
-
-
-    public Person(Animal animal) {
-        this.animal = animal;
+    public Person(@Qualifier("dog") Animal animal1,
+                  @Qualifier("cat") Animal animal2) {
+        this.animal1 = animal1;
+        this.animal2 = animal2;
 
     }
 
-    public void aboutAnimal() {
-        animal.AnimalMinus();
-        animal.AnimalPlus();
+    public void aboutAnimal1() {
+        animal1.AnimalMinus();
+        animal1.AnimalPlus();
+    }
+
+    public void aboutAnimal2() {
+        animal2.AnimalMinus();
+        animal2.AnimalPlus();
     }
 
 
     @Override
     public String toString() {
-        return "Person  " +
-                "name='" + name + '\'' +
-                ", age=" + age+" " + animal;
+        return "name='" + name + '\'' +
+                ", age=" + age+" " + animal1+"   name="+name2+" "+animal2;
     }
 
 }
